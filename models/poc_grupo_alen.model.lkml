@@ -19,4 +19,12 @@ include: "/views/*.view.lkml"
 explore: copa {
   label: "Copa SAP"
   description: "Tabla Copa de SAP"
+
+join: materiales {
+  view_label: "Materiales SAP"
+  relationship: many_to_one
+  type: left_outer
+  sql_on: ${copa.matnr} = ${materiales.idmaterial} ;;
+}
+
 }

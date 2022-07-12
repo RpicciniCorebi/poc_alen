@@ -84,6 +84,7 @@ view: materiales {
 
   dimension: idmaterial {
     type: string
+    primary_key: yes
     sql: ${TABLE}.IDMATERIAL ;;
   }
 
