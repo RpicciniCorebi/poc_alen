@@ -39,7 +39,7 @@ explore: copa {
     view_label: "Fact Data Retail"
     relationship: one_to_many
     type: inner
-    sql_on: ${prod_scan_retail.tag} = ${fact_data_p.prod_tag} and  ${fact_data_p.mkt_tag} = "MQ2GZ" ;;
+    sql_on: ${prod_scan_retail.tag} = ${fact_data_p.prod_tag} and  ${fact_data_p.mkt_tag} = "MQ2LD" ;;
   }
 
   join: per_p {
@@ -48,12 +48,4 @@ explore: copa {
     type: left_outer
     sql_on: ${fact_data_p.per_tag} = ${per_p.tag} ;;
   }
-
-  join: mkt_p {
-    view_label: "Market Retail Nielsen"
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${fact_data_p.mkt_tag} = ${mkt_p.tag} and ${mkt_p.tag} = "MQ2LD" ;;
-  }
-
 }
