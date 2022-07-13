@@ -28,36 +28,10 @@ explore: copa {
     sql_on: ${copa.matnr} = ${materiales.idmaterial} ;;
   }
 
-}
-
-explore: fact_data_p {
-  label: "Nielsen Retail"
-  view_label: "Fact Data Retail"
-  description: "Vista Factica de los datos Retail de Nielsen"
-  always_join: [mkt_p, per_p, prod_scan_retail]
-
   join: prod_scan_retail {
     view_label: "Prod Scantrack-Retail Nielsen"
     relationship: many_to_one
-    type: inner
-    sql_on: ${fact_data_p.prod_tag} = ${prod_scan_retail.tag} ;;
-  }
-
-  join: per_p {
-    view_label: "Período Retail Nielsen"
-    relationship: many_to_one
     type: left_outer
-    sql_on: ${fact_data_p.per_tag} = ${per_p.tag} ;;
+    sql_on: ${materiales.cveupccmp} = ${prod_scan_retail.item}  ;;
   }
-
-  join: mkt_p {
-    view_label: "Market Retail Nielsen"
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${fact_data_p.mkt_tag} = ${mkt_p.tag} and ${mkt_p.tag} = "MQ2LD" ;;
-  }
-
-
-
-
 }
