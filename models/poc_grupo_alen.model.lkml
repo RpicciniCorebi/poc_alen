@@ -34,7 +34,7 @@ explore: fact_data_p {
   label: "Nielsen Retail"
   view_label: "Fact Data Retail"
   description: "Vista Factica de los datos Retail de Nielsen"
-  always_join: [mkt_p]
+  always_join: [mkt_p, per_p, prod_scan_retail]
 
   join: prod_scan_retail {
     view_label: "Prod Scantrack-Retail Nielsen"
