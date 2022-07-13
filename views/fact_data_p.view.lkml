@@ -268,9 +268,9 @@ view: fact_data_p {
     sql: ${TABLE}.stu ;;
   }
 
-  dimension: u {
+  measure: u {
     label: "VTAS. EN UNIDADES (in 000)"
-    type: string
+    type: number
     sql: ${TABLE}.u ;;
   }
 
