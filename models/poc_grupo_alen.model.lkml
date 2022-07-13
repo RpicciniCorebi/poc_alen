@@ -39,7 +39,7 @@ explore: copa {
     view_label: "Fact Data Retail"
     relationship: one_to_many
     type: inner
-    sql_on: ${prod_scan_retail.tag} = ${fact_data_p.prod_tag} and  ${mkt_p.tag} = "MQ2LD" ;;
+    sql_on: ${prod_scan_retail.tag} = ${fact_data_p.prod_tag} and  ${fact_data_p.mkt_tag} = "MQ2GZ" ;;
   }
 
   join: per_p {
