@@ -270,8 +270,8 @@ view: fact_data_p {
 
   measure: u {
     label: "VTAS. EN UNIDADES (in 000)"
-    type: number
-    sql: ${TABLE}.u ;;
+    type: sum
+    sql: IFNULL(SAFE_CAST(${TABLE}.u as INT64), 0) ;;
   }
 
   dimension: u_purch {

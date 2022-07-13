@@ -28,24 +28,10 @@ explore: copa {
     sql_on: ${copa.matnr} = ${materiales.idmaterial} ;;
   }
 
-  join: prod_scan_retail {
-    view_label: "Prod Scantrack-Retail Nielsen"
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${materiales.cveupccmp} = ${prod_scan_retail.item}  ;;
-  }
-
-  join: fact_data_p {
+  join: nielsen_retail {
     view_label: "Fact Data Retail"
-    relationship: one_to_many
-    type: inner
-    sql_on: ${prod_scan_retail.tag} = ${fact_data_p.prod_tag} and  ${fact_data_p.mkt_tag} = "MQ2LD" ;;
-  }
-
-  join: per_p {
-    view_label: "Período Retail Nielsen"
-    relationship: many_to_one
+    relationship: many_to_many
     type: left_outer
-    sql_on: ${fact_data_p.per_tag} = ${per_p.tag} ;;
+    sql_on: ${materiales.cveupccmp} = ${nielsen_retail.item}  ;;
   }
 }

@@ -1,27 +1,27 @@
 view: nielsen_retail {
   derived_table: {
-    sql: SELECT a_prod_p.item, a_fact_p.*, a_per_p.*, a_mkt_p.*
-      FROM `poc-349018.pocgrupoalen.fact_data_p` as a_fact_p
-      INNER JOIN (SELECT a.item, b.*
-                  FROM `poc-349018.pocgrupoalen.prod` as a
-                  INNER JOIN `poc-349018.pocgrupoalen.prod_p` as b
-                  ON a.h1_limpiadores_liquidos_level_0 = b.h1_limpiadores_liquidos_level_0
-                    AND a.fabricante_unif_ = b.fabricante_unif_
-                    AND a.marca_unif_ = b.marca_unif_
-                    AND a.uso___tipo = b.uso___tipo
-                    AND a.presentacion_unif_ii = b.presentacion_unif_ii
-                    AND a.submarca_unif_ = b.submarca_unif_
-                    AND a.aroma_unif_ = b.aroma_unif_
-                    AND a.envase_unif____repuesto = b.envase_unif____repuesto
-                    AND a.peso_convertido = b.peso_convertido
-                    AND b.fabricante_unif_ = 'INDS. ALEN'
-                    AND  b.hier_level_num = '9'
-                  WHERE a.fabricante_unif_ = 'INDS. ALEN' AND a.hier_level_num = '10') as a_prod_p
-        ON a_fact_p.prod_tag = a_prod_p.tag
-      INNER JOIN `poc-349018.pocgrupoalen.per_p` as a_per_p
-        ON a_fact_p.per_tag = a_per_p.TAG
-      INNER JOIN `poc-349018.pocgrupoalen.mkt_p` as a_mkt_p
-        ON a_fact_p.mkt_tag = a_mkt_p.TAG and a_mkt_p.TAG = 'MQ2LD'
+    sql:  SELECT a_prod_p.item, a_fact_p.*, a_per_p.*, a_mkt_p.*
+          FROM `poc-349018.pocgrupoalen.fact_data_p` as a_fact_p
+          INNER JOIN (SELECT a.item, b.*
+                      FROM `poc-349018.pocgrupoalen.prod` as a
+                      INNER JOIN `poc-349018.pocgrupoalen.prod_p` as b
+                        ON a.h1_limpiadores_liquidos_level_0 = b.h1_limpiadores_liquidos_level_0
+                        AND a.fabricante_unif_ = b.fabricante_unif_
+                        AND a.marca_unif_ = b.marca_unif_
+                        AND a.uso___tipo = b.uso___tipo
+                        AND a.presentacion_unif_ii = b.presentacion_unif_ii
+                        AND a.submarca_unif_ = b.submarca_unif_
+                        AND a.aroma_unif_ = b.aroma_unif_
+                        AND a.envase_unif____repuesto = b.envase_unif____repuesto
+                        AND a.peso_convertido = b.peso_convertido
+                        AND b.fabricante_unif_ = 'INDS. ALEN'
+                        AND  b.hier_level_num = '9'
+                      WHERE a.fabricante_unif_ = 'INDS. ALEN' AND a.hier_level_num = '10') as a_prod_p
+            ON a_fact_p.prod_tag = a_prod_p.tag
+          INNER JOIN `poc-349018.pocgrupoalen.per_p` as a_per_p
+            ON a_fact_p.per_tag = a_per_p.TAG
+          INNER JOIN `poc-349018.pocgrupoalen.mkt_p` as a_mkt_p
+            ON a_fact_p.mkt_tag = a_mkt_p.TAG and a_mkt_p.TAG = 'MQ2LD'
        ;;
   }
 
@@ -50,9 +50,10 @@ view: nielsen_retail {
     sql: ${TABLE}.per_tag ;;
   }
 
-  dimension: u {
-    type: string
-    sql: ${TABLE}.u ;;
+  measure: u {
+    label: "VTAS. EN UNIDADES (in 000)"
+    type: sum
+    sql: IFNULL(SAFE_CAST(${TABLE}.u as INT64), 0) ;;
   }
 
   dimension: e {

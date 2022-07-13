@@ -43,6 +43,7 @@ view: per_p {
   }
 
   dimension: tag {
+    primary_key: yes
     type: string
     sql: ${TABLE}.tag ;;
   }

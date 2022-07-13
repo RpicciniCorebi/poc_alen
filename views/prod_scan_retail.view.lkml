@@ -29,6 +29,7 @@ view: prod_scan_retail {
   }
 
   dimension: tag {
+    primary_key: yes
     type: string
     sql: ${TABLE}.tag ;;
   }
