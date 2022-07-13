@@ -34,4 +34,12 @@ explore: copa {
     type: left_outer
     sql_on: ${materiales.cveupccmp} = ${prod_scan_retail.item}  ;;
   }
+
+  join: fact_data_p {
+    view_label: "Fact Data Retail"
+    relationship: one_to_many
+    type: inner
+    sql_on: ${prod_scan_retail.tag} = ${fact_data_p.prod_tag} ;;
+  }
+
 }
