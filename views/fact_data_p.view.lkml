@@ -108,6 +108,7 @@ view: fact_data_p {
   }
 
   dimension: e {
+    label: "VTAS. EN UNIDADES EQ (in 000 LITROS)"
     type: string
     sql: ${TABLE}.e ;;
   }
@@ -268,6 +269,7 @@ view: fact_data_p {
   }
 
   dimension: u {
+    label: "VTAS. EN UNIDADES (in 000)"
     type: string
     sql: ${TABLE}.u ;;
   }
@@ -283,6 +285,7 @@ view: fact_data_p {
   }
 
   dimension: v {
+    label: "VTAS. EN VALOR"
     type: string
     sql: ${TABLE}.v ;;
   }
