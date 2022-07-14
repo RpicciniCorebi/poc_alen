@@ -15,7 +15,7 @@ persist_with: poc_grupo_alen_default_datagroup
 # include all the views
 include: "/views/*.view.lkml"
 
-## Explores
+## SAP Copa
 explore: copa {
   label: "SAP vs Nielsen"
   view_label: "Copa SAP"
@@ -28,6 +28,7 @@ explore: copa {
     sql_on: ${copa.matnr} = ${materiales.idmaterial} ;;
   }
 
+## Creo relación con Nielsen a travez del Item de Nielsen
  join: nielsen_retail {
    view_label: "Fact Data Retail"
     relationship: many_to_one
