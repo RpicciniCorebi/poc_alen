@@ -32,6 +32,44 @@ view: copa {
     sql: ${TABLE}._PARTITIONTIME ;;
   }
 
+  measure: cajas_vend_est {
+    label: "Cajas Vend Est (Miles)"
+    type: sum
+    sql: ${vv033} ;;
+  }
+
+  measure: cajas_vend_eq {
+    label: "Cajas Vend Eq (Miles)"
+    type: sum
+    sql: ${vv002}/15 ;;
+  }
+
+  measure: promocion_regular {
+    label: "Promoción Regular"
+    type: sum
+    sql: ${vv001} + ${vv025} + ${vv044};;
+  }
+
+  measure: descuento_financiero {
+    label: "Descuentos Financieros"
+    type: sum
+    sql: ${vv003} ;;
+  }
+
+  measure: inversion_promocion {
+    label: "Inversión a Promoción"
+    type: sum
+    sql: ${vv005} ;;
+  }
+
+  measure: condiciones_comerciales {
+    label: "Condiciones Comerciales"
+    type: sum
+    sql: ${vv004} + ${vv042} ;;
+  }
+
+
+
   dimension: absmg {
     type: number
     sql: ${TABLE}.ABSMG ;;

@@ -28,10 +28,46 @@ explore: copa {
     sql_on: ${copa.matnr} = ${materiales.idmaterial} ;;
   }
 
-  join: nielsen_retail {
-    view_label: "Fact Data Retail"
-    relationship: many_to_many
+ join: nielsen_retail {
+   view_label: "Fact Data Retail"
+    relationship: many_to_one
     type: left_outer
     sql_on: ${materiales.cveupccmp} = ${nielsen_retail.item}  ;;
   }
+}
+
+## Nielsen
+explore: fact_data_p {
+  label: "Nielsen Retail"
+  view_label: "Fact Data Retail"
+  always_join: [prod_scan_retail, per_p, mkt_p]
+
+  join: prod_scan_retail {
+    view_label: "Nielsen Prod Scantrack-Retail "
+    relationship: many_to_one
+    type: left_outer
+      sql_on: ${fact_data_p.prod_tag} = ${prod_scan_retail.tag}  ;;
+  }
+
+  join: per_p {
+    view_label: "Nielsen Período Retail"
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${fact_data_p.per_tag} = ${per_p.tag} ;;
+  }
+
+  join: mkt_p {
+    view_label: "Nielsen Mkt Retail"
+    relationship: many_to_one
+    type: inner
+    sql_on: ${fact_data_p.mkt_tag} = ${mkt_p.tag} and ${mkt_p.tag} = "MQ2LD" ;;
+  }
+
+  join: materiales {
+    view_label: "SAP Materiales"
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${prod_scan_retail.item} = ${materiales.cveupccmp} ;;
+  }
+
 }
