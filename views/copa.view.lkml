@@ -2,6 +2,21 @@ view: copa_sr {
   sql_table_name: `pocgrupoalen.copa_sr`
     ;;
 
+  dimension_group: _partitiondate {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: PARSE_DATE("%Y%m%d", concat(${anio_mes}, "01")) ;;
+  }
+
   dimension: anio {
     type: string
     sql: ${TABLE}.Anio ;;
