@@ -28,6 +28,7 @@ explore: copa_sr {
     sql_on: ${copa_sr.matnr} = ${materiales.idmaterial} ;;
   }
 
+## Nielsen dentro de SAP
   join: fact_data_p_sr {
     view_label: "Fact Data Retail"
     relationship: many_to_one
@@ -64,11 +65,5 @@ explore: fact_data_p_sr {
     sql_on: ${fact_data_p_sr.mkt_tag} = ${mkt_p.tag} and ${mkt_p.tag} = "MQ2LD" ;;
   }
 
-  join: materiales {
-    view_label: "SAP Materiales"
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${prod_scan_retail.item} = ${materiales.cveupccmp} ;;
-  }
 
 }
